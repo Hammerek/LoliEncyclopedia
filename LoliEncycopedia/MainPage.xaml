@@ -6,24 +6,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
         <local:ImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="arigato">
+        <ListBox x:Name="Arigato">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Image Source="{Binding Converter= {StaticResource ImageConverter} }"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <Frame Name="LoliInfo" Grid.Column="1"/>
     </Grid>
 </Page>

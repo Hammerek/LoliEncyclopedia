@@ -13,8 +13,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using LoliEncycopedia;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using SQLite.Net.Platform.WinRT;
+using SQLite.Net;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace LoliEncycopedia
 {
@@ -25,23 +28,53 @@ namespace LoliEncycopedia
     {
         public MainPage()
         {
-            this.InitializeComponent();
-            arigato.ItemsSource = Scenarios; 
+            LoliInfoDatabase.CreateDatabase();
+            InitializeComponent();
+            Arigato.SelectionChanged += clickInfo;
+            LoliInfo.Navigate(typeof(LoliInfoPage));
+            var task = GetHarem();
         }
-        private static List<Scenario> Scenarios { get; } = new List<Scenario>
+
+        private void clickInfo(object sender, SelectionChangedEventArgs e)
         {
-            new Scenario() {ClassType = null, Icon = "aaaaaa", Title = "Monster" }
 
-        };
+            Debug.WriteLine("loli");
+            var lb = sender as ListBox;
+            var selLoli = (KeyValuePair<string, string>)lb.SelectedItem;
+            var loliname = selLoli.Key;
+            if (!LoliInfoDatabase.ContainsLoli(loliname))
+            {
+                Debug.WriteLine("Nie mozna znalezc danej " + loliname);
+            }
+            else
+            {
+                var loliinfo = LoliInfoDatabase.GetLoliInfo(loliname);
+                LoliInfoPage.Instance.UpdateLoli(loliinfo);
+            }
+        }
 
-
+        private async Task GetHarem()
+        {
+            var list = await WebHelper.GetLatestLoliInfos();
+            if (list != null && list.Count > 0)
+            {
+                foreach (var para in list)
+                {
+                    if (!LoliInfoDatabase.ContainsLoli(para.Key))
+                    {
+                        LoliInfoDatabase.AddLoliInfo(para.Value);
+                    }
+                }
+            }
+            Arigato.ItemsSource = LoliInfoDatabase.GetHarem();
+        }
     }
     public class ImageBindingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var s = value as Scenario;
-            return new Uri("ms-appx:///Assets/Loli Pictures" + s.Icon + ".png");
+            var s = (KeyValuePair<string, string>)value;
+            return new Uri("ms-appx:///Assets/LoliPictures/" + s.Value + ".png");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

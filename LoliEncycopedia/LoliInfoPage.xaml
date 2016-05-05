@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="LoliEncycopedia.LoliInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LoliEncycopedia"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <RelativePanel>
+        <StackPanel x:Name="LNC" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Name"/>
+            <TextBox x:Name="Loli_Name" IsReadOnly="True" MinWidth="100"/>
+        </StackPanel>
+        <StackPanel x:Name="LAC" RelativePanel.Below="LNC" RelativePanel.AlignLeftWith="LNC" RelativePanel.AlignRightWith="LNC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Age"/>
+            <TextBox x:Name="Loli_Age"/>
+        </StackPanel>
+        <StackPanel x:Name="LHC" RelativePanel.Below="LAC" RelativePanel.AlignLeftWith="LAC" RelativePanel.AlignRightWith="LAC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Heigth"/>
+            <TextBox x:Name="Loli_Height"/>
+        </StackPanel>
+        <StackPanel x:Name="LWC" RelativePanel.Below="LHC" RelativePanel.AlignLeftWith="LHC" RelativePanel.AlignRightWith="LHC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Weigth"/>
+            <TextBox x:Name="Loli_Weight"/>
+        </StackPanel>
+        <StackPanel x:Name="LCSC" RelativePanel.Below="LWC" RelativePanel.AlignLeftWith="LWC" RelativePanel.AlignRightWith="LWC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Chest size"/>
+            <TextBox x:Name="Loli_Chest"/>
+        </StackPanel>
+        <StackPanel x:Name="LWSC" RelativePanel.Below="LCSC" RelativePanel.AlignLeftWith="LCSC" RelativePanel.AlignRightWith="LCSC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Waist size"/>
+            <TextBox x:Name="Loli_Waist"/>
+        </StackPanel>
+        <StackPanel x:Name="LHSC" RelativePanel.Below="LWSC" RelativePanel.AlignLeftWith="LWSC" RelativePanel.AlignRightWith="LWSC" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="Hip size"/>
+            <TextBox x:Name="Loli_Hip"/>
+        </StackPanel>
+    </RelativePanel>
+</Page>
