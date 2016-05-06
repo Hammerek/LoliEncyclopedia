@@ -6,17 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
     <Page.Resources>
         <local:ImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
-
-    <Grid>
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <GridView x:Name="LoliListView" Margin="0,10,0,0">
+        <GridView x:Name="LoliListView" Margin="0,10,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Image Source="{Binding Converter= {StaticResource ImageConverter} }" MaxWidth="200" MaxHeight="200" UseLayoutRounding="True"/>

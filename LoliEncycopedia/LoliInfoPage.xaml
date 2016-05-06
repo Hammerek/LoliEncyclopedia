@@ -6,45 +6,37 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-
-    <RelativePanel>
-        <Button x:Name="Loli_Gallery" Content="Gallery" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True"/>
-
-        <RelativePanel x:Name="LNC" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-            <TextBlock Text="Name:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Name"/>
-            <TextBox x:Name="Loli_Name" IsReadOnly="True" TextAlignment="Center" HorizontalAlignment="Right" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LAC" RelativePanel.Below="LNC" RelativePanel.AlignLeftWith="LNC" RelativePanel.AlignRightWith="LNC">
-            <TextBlock Text="Age:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Age"/>
-            <TextBox x:Name="Loli_Age" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LHC" RelativePanel.Below="LAC" RelativePanel.AlignLeftWith="LAC" RelativePanel.AlignRightWith="LAC">
-            <TextBlock Text="Heigth:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Height"/>
-            <TextBox x:Name="Loli_Height" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LWC" RelativePanel.Below="LHC" RelativePanel.AlignLeftWith="LHC" RelativePanel.AlignRightWith="LHC">
-            <TextBlock Text="Weigth:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Weight"/>
-            <TextBox x:Name="Loli_Weight" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LCSC" RelativePanel.Below="LWC" RelativePanel.AlignLeftWith="LWC" RelativePanel.AlignRightWith="LWC">
-            <TextBlock Text="Chest size:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Chest"/>
-            <TextBox x:Name="Loli_Chest" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LWSC" RelativePanel.Below="LCSC" RelativePanel.AlignLeftWith="LCSC" RelativePanel.AlignRightWith="LCSC">
-            <TextBlock Text="Waist size:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Waist"/>
-            <TextBox x:Name="Loli_Waist" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-        <RelativePanel x:Name="LHSC" RelativePanel.Below="LWSC" RelativePanel.AlignLeftWith="LWSC" RelativePanel.AlignRightWith="LWSC">
-            <TextBlock Text="Hip size:" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="Loli_Hip"/>
-            <TextBox x:Name="Loli_Hip" IsReadOnly="True" TextAlignment="Center" RelativePanel.AlignRightWithPanel="True"/>
-        </RelativePanel>
-
-    </RelativePanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Name:"/>
+        <TextBox x:Name="Loli_Name" IsReadOnly="True" TextAlignment="Center" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Age:" Grid.Row="1"/>
+        <TextBox x:Name="Loli_Age" IsReadOnly="True" TextAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Heigth:" Grid.Row="2"/>
+        <TextBox x:Name="Loli_Height" IsReadOnly="True" TextAlignment="Center"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Weigth:" Grid.Row="3"/>
+        <TextBox x:Name="Loli_Weight" IsReadOnly="True" TextAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Chest size:" Grid.Row="4"/>
+        <TextBox x:Name="Loli_Chest" IsReadOnly="True" TextAlignment="Center" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Waist size:" Grid.Row="5"/>
+        <TextBox x:Name="Loli_Waist" IsReadOnly="True" TextAlignment="Center" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBlock Text="Hip size:" Grid.Row="6"/>
+        <TextBox x:Name="Loli_Hip" IsReadOnly="True" TextAlignment="Center" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
+        <RichTextBlock x:Name="Loli_History" Grid.Row="7" Grid.ColumnSpan="2"></RichTextBlock>
+        <Button x:Name="Loli_Gallery" Content="Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+    </Grid>
 </Page>
