@@ -33,18 +33,18 @@ namespace LoliEncycopedia
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+
         }
 
         public void UpdateLoli(LoliInfo loliinfo)
-        {          
+        {
             Loli_Name.Text = loliinfo.Name;
             Loli_Age.Text = loliinfo.Age.ToString();
-            Loli_Height.Text = loliinfo.Heigth.ToString();
-            Loli_Weight.Text = loliinfo.Heigth.ToString();
-            Loli_Chest.Text = loliinfo.ChestSize.ToString();
-            Loli_Waist.Text = loliinfo.WaistSize.ToString();
-            Loli_Hip.Text = loliinfo.HipSize.ToString();
+            Loli_Height.Text = loliinfo.Heigth + " cm";
+            Loli_Weight.Text = loliinfo.Weigth + " kg";
+            Loli_Chest.Text = loliinfo.ChestSize + " cm";
+            Loli_Waist.Text = loliinfo.WaistSize + " cm";
+            Loli_Hip.Text = loliinfo.HipSize + " cm";
         }
     }
 }

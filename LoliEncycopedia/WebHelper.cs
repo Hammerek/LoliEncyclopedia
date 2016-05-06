@@ -17,7 +17,7 @@ namespace LoliEncycopedia
             
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Clear();
-            var uri = new Uri("http://localhost:81/lolitki.json");
+            var uri = new Uri("https://dl.dropboxusercontent.com/s/7ktmo6zhuhu4xk8/lolitki.json");
             var op = httpClient.GetStringAsync(uri);
             var httpResponseBody = "";
             try

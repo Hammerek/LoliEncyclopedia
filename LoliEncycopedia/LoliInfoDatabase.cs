@@ -60,6 +60,16 @@ namespace LoliEncycopedia
                 return i != null;
             }
         }
+        public static void UpdateLoliInfo(LoliInfo value)
+        {
+            var loliInfo = GetLoliInfo(value.Name);
+            value.Id = loliInfo.Id;
+
+            using (var db = DbConnection)
+            {
+                db.Update(value);
+            }
+        }
 
         /// <summary>
         /// string = Loli title, string = Loli icon 
@@ -78,6 +88,8 @@ namespace LoliEncycopedia
             }
             return d;
         }
-        public static SQLiteConnection DbConnection => new SQLiteConnection(new SQLitePlatformWinRT(), Path.Combine(ApplicationData.Current.LocalFolder.Path,"LoliDatabase.sqlite"));
+        public static SQLiteConnection DbConnection => new SQLiteConnection(new SQLitePlatformWinRT(), Path.Combine(ApplicationData.Current.LocalFolder.Path, "LoliDatabase.sqlite"));
+
+
     }
 }

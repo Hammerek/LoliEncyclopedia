@@ -30,7 +30,7 @@ namespace LoliEncycopedia
         {
             LoliInfoDatabase.CreateDatabase();
             InitializeComponent();
-            Arigato.SelectionChanged += clickInfo;
+            LoliListView.SelectionChanged += clickInfo;
             LoliInfo.Navigate(typeof(LoliInfoPage));
             var task = GetHarem();
         }
@@ -39,7 +39,7 @@ namespace LoliEncycopedia
         {
 
             Debug.WriteLine("loli");
-            var lb = sender as ListBox;
+            var lb = sender as GridView;
             var selLoli = (KeyValuePair<string, string>)lb.SelectedItem;
             var loliname = selLoli.Key;
             if (!LoliInfoDatabase.ContainsLoli(loliname))
@@ -64,11 +64,16 @@ namespace LoliEncycopedia
                     {
                         LoliInfoDatabase.AddLoliInfo(para.Value);
                     }
+                    else
+                    {
+                        LoliInfoDatabase.UpdateLoliInfo(para.Value);
+                    }
                 }
             }
-            Arigato.ItemsSource = LoliInfoDatabase.GetHarem();
+            LoliListView.ItemsSource = LoliInfoDatabase.GetHarem();
         }
     }
+
     public class ImageBindingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
