@@ -38,6 +38,7 @@ namespace LoliEncycopedia
 
         public void UpdateLoli(LoliInfo loliinfo)
         {
+            Loli_Anime.Text = loliinfo.Anime;
             Loli_Name.Text = loliinfo.Name;
             Loli_Age.Text = loliinfo.Age.ToString();
             Loli_Height.Text = loliinfo.Heigth + " cm";

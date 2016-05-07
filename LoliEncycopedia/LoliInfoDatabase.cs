@@ -20,7 +20,6 @@ namespace LoliEncycopedia
 {
     public class LoliInfoDatabase
     {
-
         public static void CreateDatabase()
         {
             try
@@ -36,11 +35,11 @@ namespace LoliEncycopedia
             }
         }
 
-        public static LoliInfo GetLoliInfo(string name)
+        public static LoliInfo GetLoliInfo(string title)
         {
             using (var db = DbConnection)
             {
-                return db.Table<LoliInfo>().First(info => info.Name == name);
+                return db.Table<LoliInfo>().First(info => info.Title == title);
             }
         }
 
@@ -52,22 +51,22 @@ namespace LoliEncycopedia
             }
         }
 
-        public static bool ContainsLoli(string name)
+        public static bool ContainsLoli(string title)
         {
             using (var db = DbConnection)
             {
-                var i = (from infos in db.Table<LoliInfo>() where infos.Name == name select infos).FirstOrDefault();
+                var i = (from infos in db.Table<LoliInfo>() where infos.Title == title select infos).FirstOrDefault();
                 return i != null;
             }
         }
-        public static void UpdateLoliInfo(LoliInfo value)
+        public static void UpdateLoliInfo(LoliInfo newLoliInfo)
         {
-            var loliInfo = GetLoliInfo(value.Name);
-            value.Id = loliInfo.Id;
+            var oldLoliInfo = GetLoliInfo(newLoliInfo.Title);
+            newLoliInfo.Id = oldLoliInfo.Id;
 
             using (var db = DbConnection)
             {
-                db.Update(value);
+                db.Update(newLoliInfo);
             }
         }
 
@@ -83,7 +82,7 @@ namespace LoliEncycopedia
                 var haremArray = db.Table<LoliInfo>().ToArray();
                 foreach (var info in haremArray)
                 {
-                    d.Add(info.Name, info.Icon);
+                    d.Add(info.Title, info.Icon);
                 }
             }
             return d;

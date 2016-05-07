@@ -13,6 +13,7 @@ namespace LoliEncycopedia
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string Title { get; set; }
         public string Icon { get; set; }
         public string Anime { get; set; }
         public string Name { get; set; }
@@ -23,6 +24,7 @@ namespace LoliEncycopedia
         public float WaistSize { get; set; }
         public float HipSize { get; set; }
         public string GalleryLink { get; set; }
+
         public LoliInfo() { }
 
         public LoliInfo(string icon, string anime, string name, int age, float heigth, float weigth, float chestSize, float waistSize, float hipSize, string galleryLink)
