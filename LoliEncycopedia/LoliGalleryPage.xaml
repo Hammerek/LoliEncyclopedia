@@ -11,13 +11,19 @@
     </Page.Resources>
 
     <Grid>
-        <GridView>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Loli_Name" Grid.Row="0" HorizontalAlignment="Center"/>
+        <GridView x:Name="Loli_Gallery" Grid.Row="1">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Image Source = "{ Binding Converter={ StaticResource ImageConverter } }"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button x:Name="Close" Content="Close" Click="Close_Click"/>
+        <Button x:Name="Close" Content="Close" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>

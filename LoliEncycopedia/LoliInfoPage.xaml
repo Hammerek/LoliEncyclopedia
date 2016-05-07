@@ -40,6 +40,6 @@
         <TextBlock Text="Hip size:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="7"/>
         <TextBox x:Name="Loli_Hip" Grid.Row="7" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <RichTextBlock x:Name="Loli_History" Grid.Row="7" Grid.ColumnSpan="2"/>
-        <Button x:Name="Loli_Gallery" Content="Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Center" Click="Loli_Gallery_Click"/>
+        <Button x:Name="Loli_Gallery" Content="Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Click="Loli_Gallery_Click"/>
     </Grid>
 </Page>

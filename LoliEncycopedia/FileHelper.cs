@@ -63,17 +63,23 @@ namespace LoliEncycopedia
                 {
                     using (var outputStream = uFileStream.AsStreamForWrite())
                     {
-                        outputStream.Write(buffer,0,buffer.Length);
+                        outputStream.Write(buffer, 0, buffer.Length);
                         outputStream.Flush();
                     }
                 }
             }
         }
 
-        public static Uri GetImagePath()
+        public static async Task<Dictionary<string, string>> GetGalleryFiles(string title)
         {
-
-            return null;
+            var loliDir = await GalleriesDirectory.CreateFolderAsync(title, CreationCollisionOption.OpenIfExists);
+            var files = await loliDir.GetFilesAsync();
+            var d = new Dictionary<string, string>();
+            foreach (var file in files)
+            {
+                d.Add(file.Name, file.Path);
+            }
+            return d;
         }
     }
 }

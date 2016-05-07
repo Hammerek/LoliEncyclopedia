@@ -39,9 +39,11 @@ namespace LoliEncycopedia
         }
         public static LoliGalleryPage Instance { get; private set; }
 
-        public void UpdateLoli(string title)
+        public async void UpdateLoli(string title)
         {
-            
+            var dictionary = await FileHelper.GetGalleryFiles(title);
+            Loli_Name.Text = title;
+            Loli_Gallery.ItemsSource = dictionary;
         }
     }
 }
