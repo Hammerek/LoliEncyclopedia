@@ -47,8 +47,7 @@ namespace LoliEncycopedia
                 Debug.WriteLine("Invalid Uri: " + path);
                 return null;
             }
-            var outDir = FileHelper.ImagesDirectory;
-            var outFile = await outDir.CreateFileAsync(title + ".png", CreationCollisionOption.ReplaceExisting);
+            var outFile = await FileHelper.ImageToSave(title);
             var downloader = new BackgroundDownloader();
             var download = downloader.CreateDownload(source, outFile);
             download.Priority = BackgroundTransferPriority.High;
@@ -56,9 +55,20 @@ namespace LoliEncycopedia
             return outFile;
         }
 
-        public static void DownloadGallery(string title, string path)
+        public static async Task<StorageFile> DownloadGallery(string title, string path)
         {
-
+            Uri source;
+            if (!Uri.TryCreate(path, UriKind.Absolute, out source))
+            {
+                Debug.WriteLine("Invalid Uri: " + path);
+                return null;
+            }
+            var outFile = await FileHelper.ZipToSave(title);
+            var downloader = new BackgroundDownloader();
+            var download = downloader.CreateDownload(source, outFile);
+            download.Priority = BackgroundTransferPriority.Default;
+            var progress = await download.StartAsync();
+            return outFile;
         }
     }
 }
