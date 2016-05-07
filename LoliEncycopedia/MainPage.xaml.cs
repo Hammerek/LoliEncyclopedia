@@ -27,6 +27,7 @@ namespace LoliEncycopedia
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static Uri LoliNotFoundUri = new Uri("ms-appx:///Assets/LoliNotFound.jpg");
         public MainPage()
         {
             LoliInfoDatabase.CreateDatabase();
@@ -97,7 +98,8 @@ namespace LoliEncycopedia
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var s = (KeyValuePair<string, string>)value;
-            return new Uri(s.Value);
+            Uri output;
+            return Uri.TryCreate(s.Value, UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
