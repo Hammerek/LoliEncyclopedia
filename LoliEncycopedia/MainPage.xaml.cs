@@ -34,23 +34,34 @@ namespace LoliEncycopedia
             InitializeComponent();
             LoliListView.SelectionChanged += LoliListView_SelectionChanged;
             FileHelper.PrepareDirectories();
-            LoliInfo.Navigate(typeof(LoliInfoPage));
+            OpenView(true);
+            OpenView(false);
+            Current = this;
             var task = GetHarem();
         }
+
+
 
         private void LoliListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lb = sender as GridView;
+            if (lb.SelectedItem == null)
+            {
+                return;
+            }
+
             var selLoli = (KeyValuePair<string, string>)lb.SelectedItem;
             var loliname = selLoli.Key;
-            if (!LoliInfoDatabase.ContainsLoli(loliname))
-            {
-                Debug.WriteLine("Cannot find " + loliname);
-            }
-            else
+            if (LoliInfoDatabase.ContainsLoli(loliname))
             {
                 var loliinfo = LoliInfoDatabase.GetLoliInfo(loliname);
                 LoliInfoPage.Instance.UpdateLoli(loliinfo);
+                
+                LoliGalleryPage.Instance.UpdateLoli(loliinfo.Title);
+            }
+            else
+            {
+                Debug.WriteLine("Cannot find " + loliname);
             }
         }
 
@@ -90,7 +101,24 @@ namespace LoliEncycopedia
             {
                 LoliListView.ItemsSource = LoliInfoDatabase.GetHarem();
             });
+
         }
+
+        public void OpenView(bool galleryOpen)
+        {
+            if (galleryOpen)
+            {
+                LoliInfo.Navigate(typeof(LoliGalleryPage));
+                LoliListView_SelectionChanged(LoliListView, null);
+            }
+            else
+            {
+                LoliInfo.Navigate(typeof(LoliInfoPage));
+                LoliListView_SelectionChanged(LoliListView, null);
+            }
+        }
+
+        public static MainPage Current { get; private set; }
     }
 
     public class ImageBindingConverter : IValueConverter

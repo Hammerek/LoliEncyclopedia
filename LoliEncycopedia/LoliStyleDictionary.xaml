@@ -8,4 +8,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="LoliInfoTextBlockField" TargetType="TextBlock">
+        <Setter Property= "VerticalAlignment" Value="Center"/>
+    </Style>
+
 </ResourceDictionary>

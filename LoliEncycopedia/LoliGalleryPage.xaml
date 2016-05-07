@@ -6,8 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <local:ImageBindingConverter x:Key="ImageConverter"/>
+    </Page.Resources>
 
     <Grid>
-        
+        <GridView>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source = "{ Binding Converter={ StaticResource ImageConverter } }"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <Button x:Name="Close" Content="Close" Click="Close_Click"/>
     </Grid>
 </Page>

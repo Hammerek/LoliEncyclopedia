@@ -29,7 +29,7 @@ namespace LoliEncycopedia
             Instance = this;
         }
 
-        public static LoliInfoPage Instance { get; private set; }
+        
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -38,6 +38,7 @@ namespace LoliEncycopedia
 
         public void UpdateLoli(LoliInfo loliinfo)
         {
+            LoliInfo = loliinfo;
             Loli_Anime.Text = loliinfo.Anime;
             Loli_Name.Text = loliinfo.Name;
             Loli_Age.Text = loliinfo.Age.ToString();
@@ -47,5 +48,15 @@ namespace LoliEncycopedia
             Loli_Waist.Text = loliinfo.WaistSize + " cm";
             Loli_Hip.Text = loliinfo.HipSize + " cm";
         }
+
+        private async void Loli_Gallery_Click(object sender, RoutedEventArgs e)
+        {
+            var title = LoliInfo.Title;
+            var gallery = await WebHelper.DownloadGallery(title, LoliInfo.GalleryLink);
+            FileHelper.UnZipGallery(gallery);
+            MainPage.Current.OpenView(true);
+        }
+        public LoliInfo LoliInfo { get; set; }
+        public static LoliInfoPage Instance { get; private set; }
     }
 }
