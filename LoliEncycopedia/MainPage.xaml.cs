@@ -37,14 +37,12 @@ namespace LoliEncycopedia
 
         private void clickInfo(object sender, SelectionChangedEventArgs e)
         {
-
-            Debug.WriteLine("loli");
             var lb = sender as GridView;
             var selLoli = (KeyValuePair<string, string>)lb.SelectedItem;
             var loliname = selLoli.Key;
             if (!LoliInfoDatabase.ContainsLoli(loliname))
             {
-                Debug.WriteLine("Nie mozna znalezc danej " + loliname);
+                Debug.WriteLine("Cannot find " + loliname);
             }
             else
             {
@@ -79,7 +77,7 @@ namespace LoliEncycopedia
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var s = (KeyValuePair<string, string>)value;
-            return new Uri("ms-appx:///Assets/LoliPictures/" + s.Value + ".png");
+            return new Uri(s.Value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

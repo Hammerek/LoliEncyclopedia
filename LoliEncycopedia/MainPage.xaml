@@ -9,6 +9,10 @@
     <Page.Resources>
         <local:ImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
+    <SplitView x:Name ="LoliSplitView">
+        <SplitView.Pane>
+            <Frame x:Name="LoliGalleryFrame"/>
+        </SplitView.Pane>
     <Grid ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,4 +27,5 @@
         </GridView>
         <Frame Name="LoliInfo" Grid.Column="1" Margin="20,10,10,10"/>
     </Grid>
+    </SplitView>
 </Page>
