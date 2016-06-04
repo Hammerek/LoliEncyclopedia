@@ -66,32 +66,38 @@ namespace LoliEncycopedia
 
         private async Task GetHarem()
         {
-            var list = await WebHelper.GetLatestLoliInfos();
-            if (list != null && list.Count > 0)
+            try
             {
-                foreach (var para in list)
+                var list = await WebHelper.GetLatestLoliInfos();
+                if (list != null && list.Count > 0)
                 {
-                    var loliTitle = para.Key;
-                    var loliInfo = para.Value;
-                    loliInfo.Title = loliTitle;
+                    foreach (var para in list)
+                    {
+                        var loliTitle = para.Key;
+                        var loliInfo = para.Value;
+                        loliInfo.Title = loliTitle;
 
-                    if (!LoliInfoDatabase.ContainsLoli(para.Key))
-                    {
-                        LoliInfoDatabase.AddLoliInfo(loliInfo);
+                        if (!LoliInfoDatabase.ContainsLoli(para.Key))
+                        {
+                            LoliInfoDatabase.AddLoliInfo(loliInfo);
+                        }
+                        else
+                        {
+                            LoliInfoDatabase.UpdateLoliInfo(loliInfo);
+                        }
                     }
-                    else
-                    {
-                        LoliInfoDatabase.UpdateLoliInfo(loliInfo);
-                    }
+                    await GetIcons();
                 }
-                await GetIcons();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("No internet connection. " + e);
             }
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
                 LoliListView.ItemsSource = LoliInfoDatabase.GetLoliTitles();
                 MainPageInstance.IsEnabled = true;
             });
-
         }
 
         private async Task GetIcons()

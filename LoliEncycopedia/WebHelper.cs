@@ -32,11 +32,11 @@ namespace LoliEncycopedia
                 var deso = JsonConvert.DeserializeObject<Dictionary<string, LoliInfo>>(httpResponseBody);
                 return deso;
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
                 Debug.WriteLine("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
+                throw new Exception("Error: " + ex.HResult.ToString("X"), ex);
             }
-            return null;
         }
 
         public static async Task<Dictionary<string, List<string>>> GetLatestLoliGallery()
@@ -56,7 +56,7 @@ namespace LoliEncycopedia
             catch (Exception ex)
             {
                 Debug.WriteLine("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
-                return null;
+                throw new Exception("Error: " + ex.HResult.ToString("X"), ex);
             }
         }
 
@@ -79,14 +79,25 @@ namespace LoliEncycopedia
 
         public static async void DownloadLoliGallery(string title)
         {
-            var galleryList = await GetLatestLoliGallery();
-            if (galleryList.ContainsKey(title))
+            try
             {
-                var gallery = galleryList[title];
-                foreach (var image in gallery)
+                var galleryList = await GetLatestLoliGallery();
+                if (galleryList.ContainsKey(title))
                 {
-                    await DownloadGalleryImage(title, image);
+                    var gallery = galleryList[title];
+                    foreach (var image in gallery)
+                    {
+                        await DownloadGalleryImage(title, image);
+                    }
                 }
+            }
+            catch (HttpRequestException ex)
+            {
+                Debug.WriteLine("Problem with gallery downloading.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Problem with gallery downloading.");
             }
         }
 
