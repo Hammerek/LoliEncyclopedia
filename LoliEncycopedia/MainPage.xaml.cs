@@ -49,15 +49,13 @@ namespace LoliEncycopedia
             {
                 return;
             }
-
-            var selLoli = (KeyValuePair<string, string>)lb.SelectedItem;
-            var loliname = selLoli.Key;
+            var loliname = (string)lb.SelectedItem;          
             if (LoliInfoDatabase.ContainsLoli(loliname))
             {
                 var loliinfo = LoliInfoDatabase.GetLoliInfo(loliname);
                 LoliInfoPage.Instance.UpdateLoli(loliinfo);
-                
-                LoliGalleryPage.Instance.UpdateLoli(loliinfo.Title);
+
+                LoliGalleryPage.Instance.UpdateLoli(loliinfo.Title, loliinfo.Name);
             }
             else
             {
@@ -75,18 +73,7 @@ namespace LoliEncycopedia
                     var loliTitle = para.Key;
                     var loliInfo = para.Value;
                     loliInfo.Title = loliTitle;
-                    var fileName = string.Join("_", loliInfo.Title.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                    if (!string.IsNullOrEmpty(loliInfo.Icon))
-                    {
-                        try
-                        {
-                            loliInfo.Icon = (await WebHelper.DownloadImage(fileName, loliInfo.Icon)).Path;
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine(ex.ToString());
-                        }
-                    }
+
                     if (!LoliInfoDatabase.ContainsLoli(para.Key))
                     {
                         LoliInfoDatabase.AddLoliInfo(loliInfo);
@@ -96,12 +83,32 @@ namespace LoliEncycopedia
                         LoliInfoDatabase.UpdateLoliInfo(loliInfo);
                     }
                 }
+               await GetIcons();
             }
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                LoliListView.ItemsSource = LoliInfoDatabase.GetHarem();
+                LoliListView.ItemsSource = LoliInfoDatabase.GetLoliTitles();
             });
 
+        }
+
+        private async Task GetIcons()
+        {
+            var list = LoliInfoDatabase.GetLoliTitles();
+            foreach (var loliName in list)
+            {
+                if (!string.IsNullOrEmpty(loliName))
+                {
+                    try
+                    {
+                        await WebHelper.DownloadIconImage(loliName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                    }
+                }
+            }
         }
 
         public void OpenView(bool galleryOpen)
@@ -121,11 +128,28 @@ namespace LoliEncycopedia
         public static MainPage Current { get; private set; }
     }
 
-    public class ImageBindingConverter : IValueConverter
+    public class IconImageBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var s = value as string;
+            var path = FileHelper.IconDirectory.Path;
+            Uri output;
+            return Uri.TryCreate(path + "/" + s+ ".png", UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return true;
+        }
+    }
+
+    public class GalleryImageBindingConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var s = (KeyValuePair<string, string>)value;
+            var path = FileHelper.GalleriesDirectory.Path;
             Uri output;
             return Uri.TryCreate(s.Value, UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
         }
@@ -135,5 +159,4 @@ namespace LoliEncycopedia
             return true;
         }
     }
-
 }

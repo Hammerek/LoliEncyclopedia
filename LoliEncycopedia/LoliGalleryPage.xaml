@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <local:ImageBindingConverter x:Key="ImageConverter"/>
+        <local:GalleryImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
 
     <Grid>

@@ -74,15 +74,15 @@ namespace LoliEncycopedia
         /// string = Loli title, string = Loli icon 
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, string> GetHarem()
+        public static List<string> GetLoliTitles()
         {
-            var d = new Dictionary<string, string>();
+            var d = new List<string>();
             using (var db = DbConnection)
             {
                 var haremArray = db.Table<LoliInfo>().ToArray();
                 foreach (var info in haremArray)
                 {
-                    d.Add(info.Title, info.Icon);
+                    d.Add(info.Title);
                 }
             }
             return d;

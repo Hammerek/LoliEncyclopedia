@@ -49,11 +49,10 @@ namespace LoliEncycopedia
             Loli_Hip.Text = loliinfo.HipSize + " cm";
         }
 
-        private async void Loli_Gallery_Click(object sender, RoutedEventArgs e)
+        private void Loli_Gallery_Click(object sender, RoutedEventArgs e)
         {
             var title = LoliInfo.Title;
-            var gallery = await WebHelper.DownloadGallery(title, LoliInfo.GalleryLink);
-            FileHelper.UnZipGallery(gallery);
+            WebHelper.DownloadLoliGallery(title);            
             MainPage.Current.OpenView(true);
         }
         public LoliInfo LoliInfo { get; set; }

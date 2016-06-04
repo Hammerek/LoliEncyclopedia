@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactions.Core;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,9 +30,20 @@ namespace LoliEncycopedia
         {
             this.InitializeComponent();
             Instance = this;
+            SetUpPageAnimation();
         }
 
-        
+        private void SetUpPageAnimation() //NOT WORKING 
+        {
+            TransitionCollection collection = new TransitionCollection();
+            NavigationThemeTransition theme = new NavigationThemeTransition();
+
+            var info = new ContinuumNavigationTransitionInfo();
+
+            theme.DefaultNavigationTransitionInfo = info;
+            collection.Add(theme);
+            this.Transitions = collection;
+        }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
@@ -39,10 +51,10 @@ namespace LoliEncycopedia
         }
         public static LoliGalleryPage Instance { get; private set; }
 
-        public async void UpdateLoli(string title)
+        public async void UpdateLoli(string title, string name)
         {
             var dictionary = await FileHelper.GetGalleryFiles(title);
-            Loli_Name.Text = title;
+            Loli_Name.Text = name;
             Loli_Gallery.ItemsSource = dictionary;
         }
     }

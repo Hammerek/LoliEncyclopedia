@@ -13,8 +13,7 @@ namespace LoliEncycopedia
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Icon { get; set; }
+        public string Title { get; set; }      
         public string Anime { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
@@ -22,14 +21,12 @@ namespace LoliEncycopedia
         public float Weigth { get; set; }
         public float ChestSize { get; set; }
         public float WaistSize { get; set; }
-        public float HipSize { get; set; }
-        public string GalleryLink { get; set; }
+        public float HipSize { get; set; }       
 
         public LoliInfo() { }
 
-        public LoliInfo(string icon, string anime, string name, int age, float heigth, float weigth, float chestSize, float waistSize, float hipSize, string galleryLink)
-        {
-            Icon = icon;
+        public LoliInfo(string anime, string name, int age, float heigth, float weigth, float chestSize, float waistSize, float hipSize)
+        {       
             Anime = anime;
             Name = name;
             Age = age;
@@ -37,8 +34,7 @@ namespace LoliEncycopedia
             Weigth = weigth;
             ChestSize = chestSize;
             WaistSize = waistSize;
-            HipSize = hipSize;
-            GalleryLink = galleryLink;
+            HipSize = hipSize;           
         }
     }
 }
