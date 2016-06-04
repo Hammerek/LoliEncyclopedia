@@ -40,21 +40,22 @@ namespace LoliEncycopedia
             var task = GetHarem();
         }
 
-
-
         private void LoliListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var lb = sender as GridView;
             if (lb.SelectedItem == null)
             {
+                if (LoliInfoPage.Instance != null)
+                {
+                    LoliInfoPage.Instance.UpdateLoli(null);
+                }
                 return;
             }
-            var loliname = (string)lb.SelectedItem;          
+            var loliname = (string)lb.SelectedItem;
             if (LoliInfoDatabase.ContainsLoli(loliname))
             {
                 var loliinfo = LoliInfoDatabase.GetLoliInfo(loliname);
                 LoliInfoPage.Instance.UpdateLoli(loliinfo);
-
                 LoliGalleryPage.Instance.UpdateLoli(loliinfo.Title, loliinfo.Name);
             }
             else
@@ -83,11 +84,12 @@ namespace LoliEncycopedia
                         LoliInfoDatabase.UpdateLoliInfo(loliInfo);
                     }
                 }
-               await GetIcons();
+                await GetIcons();
             }
             await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
                 LoliListView.ItemsSource = LoliInfoDatabase.GetLoliTitles();
+                MainPageInstance.IsEnabled = true;
             });
 
         }
@@ -135,7 +137,7 @@ namespace LoliEncycopedia
             var s = value as string;
             var path = FileHelper.IconDirectory.Path;
             Uri output;
-            return Uri.TryCreate(path + "/" + s+ ".png", UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
+            return Uri.TryCreate(path + "/" + s + ".png", UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

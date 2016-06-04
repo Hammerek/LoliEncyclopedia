@@ -29,7 +29,7 @@ namespace LoliEncycopedia
             Instance = this;
         }
 
-        
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -38,21 +38,29 @@ namespace LoliEncycopedia
 
         public void UpdateLoli(LoliInfo loliinfo)
         {
-            LoliInfo = loliinfo;
-            Loli_Anime.Text = loliinfo.Anime;
-            Loli_Name.Text = loliinfo.Name;
-            Loli_Age.Text = loliinfo.Age.ToString();
-            Loli_Height.Text = loliinfo.Heigth + " cm";
-            Loli_Weight.Text = loliinfo.Weigth + " kg";
-            Loli_Chest.Text = loliinfo.ChestSize + " cm";
-            Loli_Waist.Text = loliinfo.WaistSize + " cm";
-            Loli_Hip.Text = loliinfo.HipSize + " cm";
+            if (loliinfo == null)
+            {
+                Loli_Gallery.IsEnabled = false;
+            }
+            else
+            {
+                Loli_Gallery.IsEnabled = true;
+                LoliInfo = loliinfo;
+                Loli_Anime.Text = loliinfo.Anime;
+                Loli_Name.Text = loliinfo.Name;
+                Loli_Age.Text = loliinfo.Age.ToString();
+                Loli_Height.Text = loliinfo.Heigth + " cm";
+                Loli_Weight.Text = loliinfo.Weigth + " kg";
+                Loli_Chest.Text = loliinfo.ChestSize + " cm";
+                Loli_Waist.Text = loliinfo.WaistSize + " cm";
+                Loli_Hip.Text = loliinfo.HipSize + " cm";
+            }
         }
 
         private void Loli_Gallery_Click(object sender, RoutedEventArgs e)
         {
             var title = LoliInfo.Title;
-            WebHelper.DownloadLoliGallery(title);            
+            WebHelper.DownloadLoliGallery(title);
             MainPage.Current.OpenView(true);
         }
         public LoliInfo LoliInfo { get; set; }
