@@ -34,8 +34,8 @@ namespace LoliEncycopedia
             InitializeComponent();
             LoliListView.SelectionChanged += LoliListView_SelectionChanged;
             FileHelper.PrepareDirectories();
-            OpenView(true);
-            OpenView(false);
+            OpenGalleryView(true);
+            OpenGalleryView(false);
             Current = this;
             var task = GetHarem();
         }
@@ -103,7 +103,7 @@ namespace LoliEncycopedia
         private async Task GetIcons()
         {
             var list = LoliInfoDatabase.GetLoliTitles();
-            var iconHashes = await WebHelper.GetLatestIconHashes();
+            var iconHashes = await WebHelper.GetLatestIconHashes();            
             foreach (var loliTitle in list)
             {
                 if (!string.IsNullOrEmpty(loliTitle))
@@ -132,7 +132,7 @@ namespace LoliEncycopedia
             }
         }
 
-        public void OpenView(bool galleryOpen)
+        public void OpenGalleryView(bool galleryOpen)
         {
             if (galleryOpen)
             {

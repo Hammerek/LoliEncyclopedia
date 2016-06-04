@@ -53,7 +53,7 @@ namespace LoliEncycopedia
 
         public static async Task<bool> GalleryFileExists(string loliTitle, string fileName)
         {
-            return await FileExists(GalleriesDirectory, loliTitle + "/" + fileName);
+            return await FileExists(GalleriesDirectory, loliTitle + "\\" + fileName);
         }
 
         private static async Task<bool> FileExists(StorageFolder dir, string fileName)
@@ -72,6 +72,17 @@ namespace LoliEncycopedia
         public static async Task<string> GetIconFileHash(string loliTitle)
         {
             var img = await GetImage(IconDirectory, loliTitle + ".png");
+            var buff = await FileIO.ReadBufferAsync(img);
+            var md5Alg = HashAlgorithmNames.Md5;
+            var algProvider = HashAlgorithmProvider.OpenAlgorithm(md5Alg);
+            var hashData = algProvider.HashData(buff);
+            var cryptoHashData = CryptographicBuffer.EncodeToHexString(hashData);
+            return cryptoHashData;
+        }
+
+        public static async Task<string> GetGalleryFileHash(string loliTitle, string fileName)
+        {
+            var img = await GetImage(GalleriesDirectory, loliTitle + "\\" + fileName);
             var buff = await FileIO.ReadBufferAsync(img);
             var md5Alg = HashAlgorithmNames.Md5;
             var algProvider = HashAlgorithmProvider.OpenAlgorithm(md5Alg);

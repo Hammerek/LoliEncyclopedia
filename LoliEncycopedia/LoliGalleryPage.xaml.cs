@@ -47,7 +47,7 @@ namespace LoliEncycopedia
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Current.OpenView(false);
+            MainPage.Current.OpenGalleryView(false);
         }
         public static LoliGalleryPage Instance { get; private set; }
 

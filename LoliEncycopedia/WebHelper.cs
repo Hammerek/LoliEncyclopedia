@@ -80,6 +80,27 @@ namespace LoliEncycopedia
             }
         }
 
+        private static async Task<Dictionary<string, string>> GetLatestGalleryHashes(string loliTitle)
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Clear();
+            var uri = new Uri(Host + "/lolis/hash_" + loliTitle + ".json");
+            var op = httpClient.GetStringAsync(uri);
+            try
+            {
+                var httpResponse = await httpClient.GetAsync(uri);
+                httpResponse.EnsureSuccessStatusCode();
+                var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                var deso = JsonConvert.DeserializeObject<Dictionary<string, string>>(httpResponseBody);
+                return deso;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
+                throw new Exception("Error: " + ex.HResult.ToString("X"), ex);
+            }
+        }
+
         public static async Task DownloadIconImage(string title)
         {
             Uri source;
@@ -97,17 +118,30 @@ namespace LoliEncycopedia
             }
         }
 
-        public static async void DownloadLoliGallery(string title)
+        public static async Task DownloadLoliGallery(string loliTitle)
         {
             try
             {
+                var galleryHashes = await GetLatestGalleryHashes(loliTitle);
                 var galleryList = await GetLatestLoliGallery();
-                if (galleryList.ContainsKey(title))
+                if (galleryList.ContainsKey(loliTitle))
                 {
-                    var gallery = galleryList[title];
+                    var gallery = galleryList[loliTitle];
                     foreach (var image in gallery)
                     {
-                        await DownloadGalleryImage(title, image);
+                        if (await FileHelper.GalleryFileExists(loliTitle, image))
+                        {
+                            var currentFileHash = await FileHelper.GetGalleryFileHash(loliTitle, image);
+                            var newFileHash = galleryHashes[image];
+                            if (!currentFileHash.Equals(newFileHash))
+                            {
+                                await DownloadGalleryImage(loliTitle, image);
+                            }
+                        }
+                        else
+                        {
+                            await DownloadGalleryImage(loliTitle, image);
+                        }
                     }
                 }
             }
