@@ -6,6 +6,8 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 
 namespace LoliEncycopedia
@@ -42,6 +44,45 @@ namespace LoliEncycopedia
                 d.Add(file.Name, file.Path);
             }
             return d;
+        }
+
+        public static async Task<bool> IconFileExistsAsync(string loliTitle)
+        {
+            return await FileExists(IconDirectory, loliTitle + ".png");
+        }
+
+        public static async Task<bool> GalleryFileExists(string loliTitle, string fileName)
+        {
+            return await FileExists(GalleriesDirectory, loliTitle + "/" + fileName);
+        }
+
+        private static async Task<bool> FileExists(StorageFolder dir, string fileName)
+        {
+            try
+            {
+                await dir.GetFileAsync(fileName);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static async Task<string> GetIconFileHash(string loliTitle)
+        {
+            var img = await GetImage(IconDirectory, loliTitle + ".png");
+            var buff = await FileIO.ReadBufferAsync(img);
+            var md5Alg = HashAlgorithmNames.Md5;
+            var algProvider = HashAlgorithmProvider.OpenAlgorithm(md5Alg);
+            var hashData = algProvider.HashData(buff);
+            var cryptoHashData = CryptographicBuffer.EncodeToHexString(hashData);
+            return cryptoHashData;
+        }
+
+        private static async Task <StorageFile> GetImage(StorageFolder dir, string fileName)
+        {
+            return await dir.GetFileAsync(fileName);
         }
     }
 }

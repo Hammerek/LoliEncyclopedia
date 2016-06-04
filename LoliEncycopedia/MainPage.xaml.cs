@@ -103,13 +103,26 @@ namespace LoliEncycopedia
         private async Task GetIcons()
         {
             var list = LoliInfoDatabase.GetLoliTitles();
-            foreach (var loliName in list)
+            var iconHashes = await WebHelper.GetLatestIconHashes();
+            foreach (var loliTitle in list)
             {
-                if (!string.IsNullOrEmpty(loliName))
+                if (!string.IsNullOrEmpty(loliTitle))
                 {
                     try
                     {
-                        await WebHelper.DownloadIconImage(loliName);
+                        if (await FileHelper.IconFileExistsAsync(loliTitle))
+                        {
+                            var currentFileHash = await FileHelper.GetIconFileHash(loliTitle);
+                            var newFileHash = iconHashes[loliTitle + ".png"];
+                            if (!currentFileHash.Equals(newFileHash))
+                            {
+                                await WebHelper.DownloadIconImage(loliTitle);
+                            }
+                        }
+                        else
+                        {
+                            await WebHelper.DownloadIconImage(loliTitle);
+                        }
                     }
                     catch (Exception ex)
                     {

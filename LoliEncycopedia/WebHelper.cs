@@ -59,6 +59,26 @@ namespace LoliEncycopedia
                 throw new Exception("Error: " + ex.HResult.ToString("X"), ex);
             }
         }
+        public static async Task<Dictionary<string, string>> GetLatestIconHashes()
+        {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Clear();
+            var uri = new Uri(Host + "/hash_icons.json");
+            var op = httpClient.GetStringAsync(uri);
+            try
+            {
+                var httpResponse = await httpClient.GetAsync(uri);
+                httpResponse.EnsureSuccessStatusCode();
+                var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                var deso = JsonConvert.DeserializeObject<Dictionary<string, string>>(httpResponseBody);
+                return deso;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.HResult.ToString("X") + " Message: " + ex.Message);
+                throw new Exception("Error: " + ex.HResult.ToString("X"), ex);
+            }
+        }
 
         public static async Task DownloadIconImage(string title)
         {
@@ -116,5 +136,7 @@ namespace LoliEncycopedia
             var progress = await download.StartAsync();
             return outFile;
         }
+
+
     }
 }
