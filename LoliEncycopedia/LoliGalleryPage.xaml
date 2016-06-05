@@ -5,6 +5,7 @@
     xmlns:local="using:LoliEncycopedia"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interop="using:Windows.UI.Xaml.Interop"
     mc:Ignorable="d">
     <Page.Resources>
         <local:GalleryImageBindingConverter x:Key="ImageConverter"/>
@@ -24,6 +25,6 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button x:Name="Close" Content="Close" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch"/>
+        <Button x:Name="Close" Content="Close" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource MyCustomButton}" />
     </Grid>
 </Page>

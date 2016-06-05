@@ -170,7 +170,5 @@ namespace LoliEncycopedia
             var progress = await download.StartAsync();
             return outFile;
         }
-
-
     }
 }
