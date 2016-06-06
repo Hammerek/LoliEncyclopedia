@@ -8,8 +8,9 @@
         <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="IsTextSelectionEnabled" Value="True"/>
-        <Setter Property="TextWrapping" Value="WrapWholeWords"/>
-        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="TextTrimming" Value="None"/>
+        
     </Style>
 
 

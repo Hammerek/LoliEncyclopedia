@@ -8,12 +8,15 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.ServiceModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation.Provider;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -54,6 +57,22 @@ namespace LoliEncycopedia
                 Loli_Chest.Text = loliinfo.ChestSize == 0 ? "N/A" : (loliinfo.ChestSize + " cm");
                 Loli_Waist.Text = loliinfo.WaistSize == 0 ? "N/A" : (loliinfo.WaistSize + " cm");
                 Loli_Hip.Text = loliinfo.HipSize == 0 ? "N/A" : (loliinfo.HipSize + " cm");
+                var animeAnimation = new DoubleAnimation
+                {
+                    From = LoliAnimeScroll.HorizontalOffset,              
+                    To = 100,
+                    Duration = new Duration(TimeSpan.FromSeconds(6)),
+                    EnableDependentAnimation = true
+                };
+                var animeStoryboard = new Storyboard
+                {
+                    AutoReverse = true,
+                    RepeatBehavior = RepeatBehavior.Forever
+                };
+                animeStoryboard.Children.Add(animeAnimation);
+                Storyboard.SetTarget(animeAnimation, LoliAnimeScroll);
+                Storyboard.SetTargetProperty(animeAnimation, "ScrollViewer.HorizontalOffset");                
+                animeStoryboard.Begin();
             }
         }
 

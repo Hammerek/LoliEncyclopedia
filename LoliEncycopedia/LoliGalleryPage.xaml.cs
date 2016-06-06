@@ -37,9 +37,7 @@ namespace LoliEncycopedia
         {
             TransitionCollection collection = new TransitionCollection();
             NavigationThemeTransition theme = new NavigationThemeTransition();
-
             var info = new ContinuumNavigationTransitionInfo();
-
             theme.DefaultNavigationTransitionInfo = info;
             collection.Add(theme);
             this.Transitions = collection;

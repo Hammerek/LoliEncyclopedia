@@ -25,7 +25,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text= "Anime:" Style="{StaticResource LoliInfoTextBlockField}"/>
-        <TextBlock x:Name="Loli_Anime" Grid.Row="0" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <ScrollViewer x:Name="LoliAnimeScroll"  Grid.Row="0" Grid.Column="1" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden">
+        <TextBlock x:Name="Loli_Anime"  Style="{StaticResource LoliInfoTextField}"/>
+        </ScrollViewer>
         <TextBlock Text="Name:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="1" />
         <TextBlock x:Name="Loli_Name" Grid.Row="1" Grid.Column="1" Style="{StaticResource LoliInfoTextField}" />
         <TextBlock Text="Age:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="2"/>
