@@ -25,21 +25,21 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text= "Anime:" Style="{StaticResource LoliInfoTextBlockField}"/>
-        <TextBox x:Name="Loli_Anime" Grid.Row="0" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Anime" Grid.Row="0" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <TextBlock Text="Name:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="1" />
-        <TextBox x:Name="Loli_Name" Grid.Row="1" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Name" Grid.Row="1" Grid.Column="1" Style="{StaticResource LoliInfoTextField}" />
         <TextBlock Text="Age:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="2"/>
-        <TextBox x:Name="Loli_Age" Grid.Row="2" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Age" Grid.Row="2" Grid.Column="1" Style="{StaticResource LoliInfoTextField}" />
         <TextBlock Text="Heigth:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="3"/>
-        <TextBox x:Name="Loli_Height" Grid.Row="3" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Height" Grid.Row="3" Grid.Column="1" Style="{StaticResource LoliInfoTextField}" />
         <TextBlock Text="Weigth:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="4"/>
-        <TextBox x:Name="Loli_Weight" Grid.Row="4" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Weight" Grid.Row="4" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <TextBlock Text="Chest size:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="5"/>
-        <TextBox x:Name="Loli_Chest" Grid.Row="5" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Chest" Grid.Row="5" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <TextBlock Text="Waist size:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="6"/>
-        <TextBox x:Name="Loli_Waist" Grid.Row="6" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Waist" Grid.Row="6" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <TextBlock Text="Hip size:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="7"/>
-        <TextBox x:Name="Loli_Hip" Grid.Row="7" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
+        <TextBlock x:Name="Loli_Hip" Grid.Row="7" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <Button x:Name="Loli_Gallery" Content="Open Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Click="Loli_Gallery_Click" Style="{StaticResource MyCustomButton}" Background="{x:Null}"/>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="9" Grid.ColumnSpan="2" Grid.RowSpan="2">
         <RichTextBlock x:Name="Loli_History" Grid.Row="9" Grid.ColumnSpan="2" Grid.RowSpan="2" Foreground="White" >
