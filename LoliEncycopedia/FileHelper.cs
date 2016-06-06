@@ -60,8 +60,8 @@ namespace LoliEncycopedia
         {
             try
             {
-                await dir.GetFileAsync(fileName);
-                return true;
+                var files = await dir.GetFilesAsync();
+                return files.Any(file => file.Name == fileName);
             }
             catch
             {

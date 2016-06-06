@@ -25,6 +25,6 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button x:Name="Close" Content="Close" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource MyCustomButton}" />
+        <Button x:Name="Close" Content="Close Gallery" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource MyCustomButton}" />
     </Grid>
 </Page>

@@ -169,6 +169,6 @@ namespace LoliEncycopedia
             download.Priority = BackgroundTransferPriority.High;
             var progress = await download.StartAsync();
             return outFile;
-        }
+        }      
     }
 }

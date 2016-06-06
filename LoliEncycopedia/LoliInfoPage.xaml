@@ -40,10 +40,10 @@
         <TextBox x:Name="Loli_Waist" Grid.Row="6" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
         <TextBlock Text="Hip size:" Style="{StaticResource LoliInfoTextBlockField}" Grid.Row="7"/>
         <TextBox x:Name="Loli_Hip" Grid.Row="7" Grid.Column="1" Style="{StaticResource LoliInfoTextField}"/>
-        <Button x:Name="Loli_Gallery" Content="Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Click="Loli_Gallery_Click" Style="{StaticResource MyCustomButton}"/>
+        <Button x:Name="Loli_Gallery" Content="Open Gallery" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Click="Loli_Gallery_Click" Style="{StaticResource MyCustomButton}" Background="{x:Null}"/>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" Grid.Row="9" Grid.ColumnSpan="2" Grid.RowSpan="2">
         <RichTextBlock x:Name="Loli_History" Grid.Row="9" Grid.ColumnSpan="2" Grid.RowSpan="2" Foreground="White" >
-            <Paragraph FontSize="50">
+            <Paragraph FontSize="30">
                 LOLI IS LOVE, LOLI IS LIFE!
             </Paragraph>
             <Paragraph>
