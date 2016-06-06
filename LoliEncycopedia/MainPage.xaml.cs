@@ -38,10 +38,12 @@ namespace LoliEncycopedia
             OpenGalleryView(false);
             Current = this;
             var task = GetHarem();
+
         }
 
-        private void LoliListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void LoliListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             var lb = sender as GridView;
             if (lb.SelectedItem == null)
             {
@@ -52,6 +54,17 @@ namespace LoliEncycopedia
                 return;
             }
             var loliname = (string)lb.SelectedItem;
+            if (e != null)
+            {
+                if (IsGalleryOpen)
+                {
+                    await WebHelper.DownloadLoliGallery(loliname);
+                }
+                else
+                {
+                  var task = WebHelper.DownloadLoliGallery(loliname);
+                }
+            }
             if (LoliInfoDatabase.ContainsLoli(loliname))
             {
                 var loliinfo = LoliInfoDatabase.GetLoliInfo(loliname);
@@ -63,6 +76,8 @@ namespace LoliEncycopedia
                 Debug.WriteLine("Cannot find " + loliname);
             }
         }
+
+        private bool IsGalleryOpen { get; set; }
 
         private async Task GetHarem()
         {
@@ -132,10 +147,16 @@ namespace LoliEncycopedia
             }
         }
 
-        public void OpenGalleryView(bool galleryOpen)
+        public async void OpenGalleryView(bool galleryOpen)
         {
+            IsGalleryOpen = galleryOpen;
             if (galleryOpen)
             {
+                var loliname = (string)LoliListView.SelectedItem;
+                if (loliname != null)
+                {
+                     await WebHelper.DownloadLoliGallery(loliname);
+                }
                 LoliInfo.Navigate(typeof(LoliGalleryPage));
                 LoliListView_SelectionChanged(LoliListView, null);
             }

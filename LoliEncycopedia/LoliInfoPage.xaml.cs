@@ -57,10 +57,8 @@ namespace LoliEncycopedia
             }
         }
 
-        private async void Loli_Gallery_Click(object sender, RoutedEventArgs e)
+        private void Loli_Gallery_Click(object sender, RoutedEventArgs e)
         {
-            var title = LoliInfo.Title;
-            await WebHelper.DownloadLoliGallery(title);
             MainPage.Current.OpenGalleryView(true);
         }
         public LoliInfo LoliInfo { get; set; }
