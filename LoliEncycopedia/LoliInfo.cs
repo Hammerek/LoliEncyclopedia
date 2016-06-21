@@ -7,7 +7,7 @@ using SQLite.Net.Attributes;
 using SQLite.Net.Platform.WinRT;
 using SQLite.Net;
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     public class LoliInfo
     {
@@ -22,10 +22,11 @@ namespace LoliEncycopedia
         public float ChestSize { get; set; }
         public float WaistSize { get; set; }
         public float HipSize { get; set; }       
+        public string Description { get; set; }
 
         public LoliInfo() { }
 
-        public LoliInfo(string anime, string name, int age, float heigth, float weigth, float chestSize, float waistSize, float hipSize)
+        public LoliInfo(string anime, string name, int age, float heigth, float weigth, float chestSize, float waistSize, float hipSize, string description)
         {       
             Anime = anime;
             Name = name;
@@ -34,7 +35,8 @@ namespace LoliEncycopedia
             Weigth = weigth;
             ChestSize = chestSize;
             WaistSize = waistSize;
-            HipSize = hipSize;           
+            HipSize = hipSize;
+            Description = description;
         }
     }
 }

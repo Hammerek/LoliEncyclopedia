@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -45,7 +45,7 @@ namespace LoliEncycopedia
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Current.OpenGalleryView(false);
+            LoliPage.Instance.OpenGalleryView(false);
         }
         public static LoliGalleryPage Instance { get; private set; }
 

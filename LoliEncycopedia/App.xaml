@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="LoliEncycopedia.App"
+    x:Class="LoliEncyclopedia.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LoliEncycopedia"
+    xmlns:local="using:LoliEncyclopedia"
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>

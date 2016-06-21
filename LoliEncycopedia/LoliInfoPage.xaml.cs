@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Navigation;
 
 
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     /// <summary>
     /// Page about loli information. 
@@ -32,6 +32,7 @@ namespace LoliEncycopedia
         {
             InitializeComponent();
             Instance = this;
+
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -57,9 +58,10 @@ namespace LoliEncycopedia
                 Loli_Chest.Text = loliinfo.ChestSize == 0 ? "N/A" : (loliinfo.ChestSize + " cm");
                 Loli_Waist.Text = loliinfo.WaistSize == 0 ? "N/A" : (loliinfo.WaistSize + " cm");
                 Loli_Hip.Text = loliinfo.HipSize == 0 ? "N/A" : (loliinfo.HipSize + " cm");
+                Loli_Description.Text = loliinfo.Description ?? "N/A";
                 var animeAnimation = new DoubleAnimation
                 {
-                    From = LoliAnimeScroll.HorizontalOffset,              
+                    From = LoliAnimeScroll.HorizontalOffset,
                     To = 100,
                     Duration = new Duration(TimeSpan.FromSeconds(6)),
                     EnableDependentAnimation = true
@@ -71,15 +73,21 @@ namespace LoliEncycopedia
                 };
                 animeStoryboard.Children.Add(animeAnimation);
                 Storyboard.SetTarget(animeAnimation, LoliAnimeScroll);
-                Storyboard.SetTargetProperty(animeAnimation, "ScrollViewer.HorizontalOffset");                
+                Storyboard.SetTargetProperty(animeAnimation, "ScrollViewer.HorizontalOffset");
                 animeStoryboard.Begin();
             }
         }
 
         private void Loli_Gallery_Click(object sender, RoutedEventArgs e)
         {
-            MainPage.Current.OpenGalleryView(true);
+            LoliPage.Instance.OpenGalleryView(true);
         }
+
+        private void Button_About_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Instance.MainFrameInstance.Navigate(typeof(About));
+        }
+
         public LoliInfo LoliInfo { get; set; }
         public static LoliInfoPage Instance { get; private set; }
     }

@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     public class WebHelper
     {

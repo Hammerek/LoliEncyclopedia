@@ -10,7 +10,7 @@ using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     public class FileHelper
     {

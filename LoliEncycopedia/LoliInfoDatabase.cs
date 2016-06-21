@@ -16,7 +16,7 @@ using SQLite.Net;
 
 
 
-namespace LoliEncycopedia
+namespace LoliEncyclopedia
 {
     public class LoliInfoDatabase
     {

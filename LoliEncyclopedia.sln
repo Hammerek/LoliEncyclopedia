@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoliEncycopedia", "LoliEncycopedia\LoliEncycopedia.csproj", "{D36AD976-A856-49E7-9A50-25EE3EAB3CBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoliEncyclopedia", "LoliEncycopedia\LoliEncyclopedia.csproj", "{D36AD976-A856-49E7-9A50-25EE3EAB3CBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
