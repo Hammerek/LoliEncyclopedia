@@ -23,6 +23,6 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Frame Name="LoliInfo" Grid.Column="1" Margin="20,10,10,10"/>
+        <Frame Name="LoliInfo" Grid.Column="1" />
     </Grid>
 </Page>

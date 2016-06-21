@@ -7,8 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <TextBlock x:Name="About_App" Text="TEST TEXT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="Close_Button" Content="Return to Main Page" Style="{StaticResource MyCustomButton}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="Close_Button_Click"></Button>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="1"/>
+                <GradientStop Color="#FFC51313" Offset="0.513"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock Text="TEST TEXT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="Close_Button" Content="Return to Main Page" Style="{StaticResource MyCustomButton}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Close_Button_Click"></Button>
     </Grid>
 </Page>

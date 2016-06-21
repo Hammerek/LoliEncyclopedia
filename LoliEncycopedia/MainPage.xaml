@@ -13,8 +13,7 @@
             <GradientStop Color="#FFC51313" Offset="0.513"/>
         </LinearGradientBrush>
     </Page.Background>
-    <Grid>
+    <Grid Margin="5">
         <Frame x:Name="MainFrame"/>
     </Grid>
-
 </Page>

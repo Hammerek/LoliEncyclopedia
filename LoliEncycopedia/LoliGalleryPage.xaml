@@ -11,20 +11,20 @@
         <local:GalleryImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
 
-    <Grid>
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="Loli_Name" Grid.Row="0" HorizontalAlignment="Center"/>
-        <GridView x:Name="Loli_Gallery" Grid.Row="1">
+        <TextBlock x:Name="Loli_Name" Grid.Row="0" HorizontalAlignment="Stretch"/>
+        <GridView x:Name="Loli_Gallery" Grid.Row="1" Padding="0,0,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Image Source = "{ Binding Converter={ StaticResource ImageConverter } }"/>
+                    <Image Source = "{ Binding Converter={ StaticResource ImageConverter } }" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button x:Name="Close" Content="Close Gallery" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource MyCustomButton}" />
+        <Button x:Name="Close" Content="Close Gallery" Click="Close_Click" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource MyCustomButton}"  />
     </Grid>
 </Page>
