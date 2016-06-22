@@ -127,17 +127,41 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\Icons\UWP\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\SplashScreen.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Icons\UWP\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Icons\UWP\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Icons\UWP\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Icons\UWP\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\Icons\UWP\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\StoreLogo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\StoreLogo.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\StoreLogo.scale-200.png" />
+    <Content Include="Assets\Icons\UWP\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Icons\UWP\Target.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Target.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\Target.scale-1600.png" />
+    <Content Include="Assets\Icons\UWP\Target.scale-300.png" />
+    <Content Include="Assets\Icons\UWP\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Icons\UWP\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Icons\UWP\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Icons\UWP\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\LoliNotFound.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
