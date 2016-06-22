@@ -114,7 +114,15 @@ namespace LoliEncyclopedia
                 var downloader = new BackgroundDownloader();
                 var download = downloader.CreateDownload(source, outFile);
                 download.Priority = BackgroundTransferPriority.High;
-                var progress = await download.StartAsync();
+                try
+                {
+                    var progress = await download.StartAsync();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.ToString());
+                    await outFile.DeleteAsync(StorageDeleteOption.Default);
+                }
             }
         }
 

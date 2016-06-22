@@ -27,8 +27,16 @@ namespace LoliEncyclopedia
             LoliListView.SelectionChanged += LoliListView_SelectionChanged;
             OpenGalleryView(true);
             OpenGalleryView(false);
+            var secondRun = Instance != null;
             Instance = this;
-            var task = GetHarem();
+            if (!secondRun)
+            {
+                var task = GetHarem();
+            }
+            else
+            {
+                UpdateLoliListView();
+            }
         }
 
         private async void LoliListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -43,7 +51,7 @@ namespace LoliEncyclopedia
                 }
                 return;
             }
-            var loliname = (string) lb.SelectedItem;
+            var loliname = (string)lb.SelectedItem;
             if (e != null)
             {
                 if (IsGalleryOpen)
@@ -98,11 +106,16 @@ namespace LoliEncyclopedia
             {
                 Debug.WriteLine("No internet connection. " + e);
             }
-            await Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
-            {
-                LoliListView.ItemsSource = LoliInfoDatabase.GetLoliTitles();
-                MainPage.Instance.IsEnabled = true;
-            });
+            UpdateLoliListView();
+        }
+
+        private void UpdateLoliListView()
+        {
+            var task = Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+             {
+                 LoliListView.ItemsSource = LoliInfoDatabase.GetLoliTitles();
+                 MainPage.Instance.IsEnabled = true;
+             });
         }
 
         private async Task GetIcons()
@@ -142,17 +155,17 @@ namespace LoliEncyclopedia
             IsGalleryOpen = galleryOpen;
             if (galleryOpen)
             {
-                var loliname = (string) LoliListView.SelectedItem;
+                var loliname = (string)LoliListView.SelectedItem;
                 if (loliname != null)
                 {
                     await WebHelper.DownloadLoliGallery(loliname);
                 }
-                LoliInfo.Navigate(typeof (LoliGalleryPage));
+                LoliInfo.Navigate(typeof(LoliGalleryPage));
                 LoliListView_SelectionChanged(LoliListView, null);
             }
             else
             {
-                LoliInfo.Navigate(typeof (LoliInfoPage));
+                LoliInfo.Navigate(typeof(LoliInfoPage));
                 LoliListView_SelectionChanged(LoliListView, null);
             }
         }
@@ -161,36 +174,40 @@ namespace LoliEncyclopedia
     }
 
     public class IconImageBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
         {
-            public object Convert(object value, Type targetType, object parameter, string language)
-            {
-                var s = value as string;
-                var path = FileHelper.IconDirectory.Path;
-                Uri output;
-                return Uri.TryCreate(path + "/" + s + ".png", UriKind.Absolute, out output)
-                    ? output
-                    : MainPage.LoliNotFoundUri;
-            }
-
-            public object ConvertBack(object value, Type targetType, object parameter, string language)
-            {
-                return true;
-            }
+            var s = value as string;
+            var path = FileHelper.IconDirectory.Path;
+            Uri output;
+            var r1 = Uri.TryCreate(path + "/" + s + ".png", UriKind.Absolute, out output);
+            var task = Task.Run(async () =>
+              {
+                  var r2 = await FileHelper.IconFileExistsAsync(s);
+                  return (r1 && r2) ? output : MainPage.LoliNotFoundUri;
+              });
+            return task.Result;
         }
 
-        public class GalleryImageBindingConverter : IValueConverter
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            public object Convert(object value, Type targetType, object parameter, string language)
-            {
-                var s = (KeyValuePair<string, string>)value;
-                var path = FileHelper.GalleriesDirectory.Path;
-                Uri output;
-                return Uri.TryCreate(s.Value, UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
-            }
+            return true;
+        }
+    }
 
-            public object ConvertBack(object value, Type targetType, object parameter, string language)
-            {
-                return true;
-            }
-        }   
+    public class GalleryImageBindingConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var s = (KeyValuePair<string, string>)value;
+            var path = FileHelper.GalleriesDirectory.Path;
+            Uri output;
+            return Uri.TryCreate(s.Value, UriKind.Absolute, out output) ? output : MainPage.LoliNotFoundUri;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            return true;
+        }
+    }
 }
