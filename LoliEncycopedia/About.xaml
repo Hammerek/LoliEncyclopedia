@@ -14,7 +14,26 @@
                 <GradientStop Color="#FFC51313" Offset="0.513"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <TextBlock Text="TEST TEXT" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="Close_Button" Content="Return to Main Page" Style="{StaticResource MyCustomButton}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Close_Button_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Image x:Name="Logo" Source="ms-appx:///Assets/Icons/UWP/Square71x71Logo.scale-400.png"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock Text="Contact:" FontWeight="Bold" HorizontalAlignment="Center" />
+            <TextBlock Text="Email: hammerrek98@gmail.com"/>
+            <TextBlock Text="Email: grm.pl.group@gmail.com"/>
+            <TextBlock Text="Developers:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Levvy" HorizontalAlignment="Center"/>
+            <TextBlock Text="Hammerek" HorizontalAlignment="Center"/>
+            <TextBlock Text=""/>
+            <TextBlock Text="Icon edited by Levvy." HorizontalAlignment="Center" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+            <TextBlock Text="DISCLAIMER:" HorizontalAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Text="All pictures and descriptions belong to their owners." HorizontalAlignment="Center" TextWrapping="WrapWholeWords"></TextBlock>
+        </StackPanel>
+        <Button x:Name="Close_Button" Content="Return to Main Page" Style="{StaticResource MyCustomButton}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="Close_Button_Click" Grid.Row="2"/>
     </Grid>
 </Page>

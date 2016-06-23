@@ -17,7 +17,7 @@
             <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="Loli_Name" Grid.Row="0" HorizontalAlignment="Stretch"/>
+        <TextBlock x:Name="Loli_Name" Grid.Row="0" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Hidden"/>
         <GridView x:Name="Loli_Gallery" Grid.Row="1" Padding="0,0,0,10" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <GridView.ItemTemplate>
                 <DataTemplate>

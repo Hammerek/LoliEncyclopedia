@@ -120,7 +120,7 @@ namespace LoliEncyclopedia
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.ToString());
+                    Debug.WriteLine(title + ": " + e);
                     await outFile.DeleteAsync(StorageDeleteOption.Default);
                 }
             }
