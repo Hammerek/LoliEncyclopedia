@@ -71,15 +71,19 @@ namespace LoliEncyclopedia.Sources
             using (var db = DbConnection)
             {
                 var haremArray = db.Table<LoliInfo>().ToArray();
-                foreach (var info in haremArray)
-                {
-                    d.Add(info.Title);
-                }
+                d.AddRange(haremArray.Select(info => info.Title));
             }
             return d;
         }
         public static SQLiteConnection DbConnection => new SQLiteConnection(new SQLitePlatformWinRT(), Path.Combine(ApplicationData.Current.LocalFolder.Path, "LoliDatabase.sqlite"));
 
 
+        public static void RemoveLoli(string title)
+        {
+            using (var db = DbConnection)
+            {
+                db.Table<LoliInfo>().Delete(li => li.Title == title);
+            }
+        }
     }
 }

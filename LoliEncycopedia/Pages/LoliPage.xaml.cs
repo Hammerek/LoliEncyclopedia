@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -71,10 +72,10 @@ namespace LoliEncyclopedia.Pages
         {
             try
             {
-                var list = await WebHelper.GetLatestLoliInfos();
-                if (list != null && list.Count > 0)
+                var newList = await WebHelper.GetLatestLoliInfos();
+                if (newList != null && newList.Count > 0)
                 {
-                    foreach (var para in list)
+                    foreach (var para in newList)
                     {
                         var loliTitle = para.Key;
                         var loliInfo = para.Value;
@@ -88,6 +89,11 @@ namespace LoliEncyclopedia.Pages
                         {
                             LoliInfoDatabase.UpdateLoliInfo(loliInfo);
                         }
+                    }
+                    var dbList = LoliInfoDatabase.GetLoliTitles();
+                    foreach (var title in dbList.Where(t => !newList.ContainsKey(t)))
+                    {
+                        LoliInfoDatabase.RemoveLoli(title);
                     }
                     await GetIcons();
                 }
