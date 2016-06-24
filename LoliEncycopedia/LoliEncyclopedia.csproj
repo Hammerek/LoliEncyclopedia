@@ -95,29 +95,29 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.xaml.cs">
+    <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FileHelper.cs" />
-    <Compile Include="LoliGalleryPage.xaml.cs">
+    <Compile Include="Sources\FileHelper.cs" />
+    <Compile Include="Pages\LoliGalleryPage.xaml.cs">
       <DependentUpon>LoliGalleryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoliInfoPage.xaml.cs">
+    <Compile Include="Pages\LoliInfoPage.xaml.cs">
       <DependentUpon>LoliInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoliInfoDatabase.cs" />
-    <Compile Include="LoliInfo.cs" />
-    <Compile Include="LoliPage.xaml.cs">
+    <Compile Include="Sources\LoliInfoDatabase.cs" />
+    <Compile Include="Sources\LoliInfo.cs" />
+    <Compile Include="Pages\LoliPage.xaml.cs">
       <DependentUpon>LoliPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebHelper.cs" />
+    <Compile Include="Sources\WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -168,19 +168,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="About.xaml">
+    <Page Include="Pages\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoliGalleryPage.xaml">
+    <Page Include="Pages\LoliGalleryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoliInfoPage.xaml">
+    <Page Include="Pages\LoliInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoliPage.xaml">
+    <Page Include="Pages\LoliPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

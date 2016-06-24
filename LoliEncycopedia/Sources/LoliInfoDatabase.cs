@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Diagnostics;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Data.Text;
 using Windows.Storage;
-using Windows.System.UserProfile;
-using SQLite.Net.Platform.WinRT;
 using SQLite.Net;
+using SQLite.Net.Platform.WinRT;
 
-
-
-
-namespace LoliEncyclopedia
+namespace LoliEncyclopedia.Sources
 {
     public class LoliInfoDatabase
     {

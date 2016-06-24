@@ -1,14 +1,15 @@
 ﻿<Page
-    x:Class="LoliEncyclopedia.LoliGalleryPage"
+    x:Class="LoliEncyclopedia.Pages.LoliGalleryPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LoliEncyclopedia"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interop="using:Windows.UI.Xaml.Interop"
+    xmlns:pages="using:LoliEncyclopedia.Pages"
     mc:Ignorable="d">
     <Page.Resources>
-        <local:GalleryImageBindingConverter x:Key="ImageConverter"/>
+        <pages:GalleryImageBindingConverter x:Key="ImageConverter"/>
     </Page.Resources>
 
     <Grid ScrollViewer.VerticalScrollBarVisibility="Disabled">

@@ -16,6 +16,7 @@ using LoliEncyclopedia;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using LoliEncyclopedia.Sources;
 using SQLite.Net.Platform.WinRT;
 using SQLite.Net;
 
@@ -35,7 +36,7 @@ namespace LoliEncyclopedia
             FileHelper.PrepareDirectories();
             Instance = this;
             MainFrameInstance = MainFrame;
-            MainFrame.Navigate(typeof (LoliPage));          
+            MainFrame.Navigate(typeof (Pages.LoliPage));          
         }
 
         public static MainPage Instance { get; private set; }
