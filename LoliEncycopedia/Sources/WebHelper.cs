@@ -11,7 +11,7 @@ namespace LoliEncyclopedia.Sources
 {
     public class WebHelper
     {
-        private const string Host = "http://lolienc.grmdev.pl";
+        private const string Host = "http://lolienc.grmdev.eu";
 
         public static async Task<Dictionary<string, LoliInfo>> GetLatestLoliInfos()
         {
